@@ -14,7 +14,7 @@
 *
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
 :root {
     --background-primary: white;
@@ -140,13 +140,13 @@ body {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6,
-button {
-    font-family: "Grenze", serif;
+h4, h5, h6, button, p, span, abbr, input, textarea, select, label, summary {
+    font-family: "Roboto Slab", serif;
     width: fit-content;
 }
+
+/* Restablecer la fuente para el cuerpo a Outfit */
+body { font-family: "Roboto Slab", serif;}
 
 h1 {
     font-size: 1.875rem;
@@ -176,17 +176,6 @@ h5 {
 h6 {
     font-size: 0.875rem;
     line-height: 1.25rem;
-}
-
-p {
-    display: block;
-    width: fit-content;
-}
-
-span {
-    font-weight: inherit;
-    font-size: inherit;
-    line-height: inherit;
 }
 
 abbr {
