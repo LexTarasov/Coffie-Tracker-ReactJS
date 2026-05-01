@@ -5,6 +5,7 @@ export default function Authentication(props) {
   const {handleCloseModal} = props
 
     const [isRegistration, setIsRegistration] = useState(false)
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const[isAuthenticating, setIsAuthenticating] = useState(false)
@@ -23,10 +24,10 @@ export default function Authentication(props) {
 
             if (isRegistration) {
                 // register a user
-                await signup(email, password)
+                await signup(email, password, name)
             } else {
                 // login a user
-                await login(email, password)
+                await login(email, password, name)
             }
             handleCloseModal()
         } catch (err) {
@@ -44,6 +45,7 @@ export default function Authentication(props) {
             {error && (
                 <p>❌ {error}</p>
             )}
+            {isRegistration && (<input value={name} onChange={(e) => { setName(e.target.value) }} placeholder="Name" />)}
             <input value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
             <input value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="********" type="password" />
             <button onClick={handleAuthenticate}><p>{isAuthenticating ? 'Authenticating...' : 'Submit'}</p></button>

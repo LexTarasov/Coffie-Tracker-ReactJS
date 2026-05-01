@@ -3,9 +3,8 @@ import { coffeeOptions } from "../utils";
 import Modal from "./Modal";
 import Authentication from "./Authentication";
 import { useAuth } from "../Context/AuthContext";
-import { doc, setDoc } from "firebase/firestore"
-import { db } from "../firebase"
-
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function CoffeeForm(props) {
   const { isAuthenticated } = props;
@@ -47,9 +46,13 @@ export default function CoffeeForm(props) {
 
       //persist the data in the firebase firestore
       const userRef = doc(db, "users", globalUser.uid);
-      await setDoc(userRef, {
-        [timestamp]: newData,
-      }, { merge: true });
+      await setDoc(
+        userRef,
+        {
+          [timestamp]: newData,
+        },
+        { merge: true },
+      );
 
       setSelectedCoffee(null);
       setHour(0);
@@ -59,8 +62,6 @@ export default function CoffeeForm(props) {
       console.log(err.message);
     }
   }
-      
-    
 
   function handleCloseModal() {
     setShowModal(false);

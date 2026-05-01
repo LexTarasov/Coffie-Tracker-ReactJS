@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from 'firebase/auth'
-import { useState, useEffect, useContext, createContext } from 'react'
+import { createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { useState, useEffect, useContext, createContext  } from 'react'
 import { auth, db } from '../firebase'
 import { doc, getDoc } from 'firebase/firestore'
 
@@ -9,14 +9,18 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
+
 export function AuthProvider(props) {
     const { children } = props
     const [globalUser, setGlobalUser] = useState(null)
     const [globalData, setGlobalData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-    function signup(email, password) {
-        return createUserWithEmailAndPassword(auth, email, password)
+    async function signup(email, password, name) {
+       const result = await createUserWithEmailAndPassword(auth, email, password)
+    await updateProfile(result.user, { displayName: name })
+    setGlobalUser({ ...result.user })  // ← aquí se guarda
+    return result
     }
 
     function login(email, password) {
@@ -42,6 +46,7 @@ export function AuthProvider(props) {
             // if there's no user, empty the user state and return from this listener
             if (!user) {
                 console.log('No active user')
+                setGlobalData(null)
                 return
             }
 
