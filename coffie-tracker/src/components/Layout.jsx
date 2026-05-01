@@ -17,9 +17,12 @@ export default function Layout(props) {
         <p>For Coffee Insatiates</p>
       </div>
       {globalUser ? (
+        <div>
+        <p>Hello, {globalUser.displayName} 👋</p> 
         <button onClick={logout}>
-          <p>Logout</p>
+            <p>Logout</p>
         </button>
+    </div>
       ) : (
         <button
           onClick={() => {
@@ -37,7 +40,7 @@ export default function Layout(props) {
     <footer>
       <p>
         <span className="text-gradient">Coffee-Track</span> was made by{" "}
-        <a target="_blank" href="https://www.smoljames.com">
+        <a target="_blank" href="">
           AlexDev
         </a>{" "}
         using the{" "}
@@ -49,7 +52,7 @@ export default function Layout(props) {
         Check out the project on{" "}
         <a
           target="_black"
-          href="https://www.github.com/jamezmca/reactjs-full-course"
+          href="https://github.com/LexTarasov"
         >
           GitHub
         </a>
